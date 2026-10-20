@@ -3,9 +3,9 @@ var ctx = canvas.getContext("2d");
 
 const game = {
     name: "CubeDood",
-    version: "1.4.0",
+    version: "1.4.1",
     author: "Studio Cubed",
-
+    coauthor: "LGM Productions",
     width: 512,
     height: 480,
 }
@@ -59,6 +59,8 @@ var assets = {
     sprites: {
         flag: "./assets/sprites/flag.png",
         logo: "./assets/sprites/logo.png",
+        logo_ja: "./assets/sprites/logo-ja.png",
+        logo_zh: "./assets/sprites/logo-zh.png",
     },
     symbols: {
         enabled: "✓",
@@ -133,10 +135,10 @@ var allStoryModeLevels = [
     "Not-Impossible,EvilDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,4,0,0,0,0,0,0,4,1,1,0,0,0,0,1,1,4,0,5,0,0,0,0,0,1,1,0,0,0,0,1,1,4,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,4,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,4,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,4,2,1,1,4,4,4,4,1,1,4,4,4,4,1,1,4,4",
     "Troll,CubeDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,4,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,4,0,0,0,4,4,4,1,0,0,0,0,0,0,0,1,1,0,0,0,4,4,4,1,0,1,4,0,4,1,0,0,0,0,0,0,4,4,4,1,0,1,0,0,0,1,0,0,0,0,0,0,4,4,4,1,0,1,2,2,2,1,0,0,0,0,0,0",
     "Free!,NiceDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,1,1,0,1,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1",
-    "Basics,OGDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,5,0,0,1,1,0,0,0",
+    "Basics,OGDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,5,0,0,1,1,0,0,0",
     "Red-Guys,OGDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0",
     "Big-Jump,OGDood,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,4,4,4,4,4,4,0,0,5,0,4,4,4,4,4,4",
-    "Double-Trouble,Document,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,4,4,4,4,0,0,1,1,0,0,4,4,4,4,4,4,4,4,4,4,0,0,1,1,0,0,4,4,4,4,4,4,4,4,4,4,1,0,0,0,0,1,4,4,4,4,4,4,4,4,4,4,1,1,0,0,1,1,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,0,0,0,5,0,0,4,4,4,4,4",
+    "Double-Trouble,Document,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,4,4,4,4,0,0,1,1,0,0,4,4,4,4,4,4,4,4,4,4,0,0,1,1,0,0,4,4,4,4,4,4,4,4,4,4,1,0,0,0,0,1,4,4,4,4,4,4,4,4,4,4,1,1,0,0,1,1,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,0,0,0,5,0,0,4,4,4,4,4",
     "To-The-Top,Mani,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,3,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,4,0,0,1,0,0,0,0,0,0,0,3,0,0,1,1,1,1,1,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0",
     "Ohio,odd,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0",
     "Amazing-Maze,OGDood,1,0,0,0,1,1,0,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,2,0,1,1,1,1,1,0,1,0,1,1,1,0,1,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,1,0,1,1,1,0,1,1,1,1,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,1,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,1,1,1,1,1,0,1,5,1,1,0,1,0,1,0",
@@ -205,6 +207,16 @@ var cannotPress = false;
 var timerStarted = false;
 var levelLoaded = false;
 
+function safePlayAudio(audioElement) {
+    if (!audioElement) return;
+    var promise = audioElement.play();
+    if (promise !== undefined) {
+        promise.catch(function(error) {
+            // Autoplay was prevented or playback failed
+        });
+    }
+}
+
 var menuAudio = new Audio(assets.ost.newMenu);
 var settingsAudio = new Audio(assets.ost.settings);
 var editorAudio = new Audio(assets.ost.editor);
@@ -215,6 +227,16 @@ var winAudio = new Audio(assets.sfx.win);
 var jumpAudio = new Audio(assets.sfx.jump);
 var swingAudio = new Audio(assets.ost.swing);
 var quadAudio = new Audio(assets.ost.quad);
+
+// Ensure all music tracks loop properly
+menuAudio.loop = true;
+settingsAudio.loop = true;
+editorAudio.loop = true;
+cubetopTheme.loop = true;
+squaredImpared.loop = true;
+boltTheme.loop = true;
+swingAudio.loop = true;
+quadAudio.loop = true;
 
 var goalFlag = new Image();
 goalFlag.src = assets.sprites.flag;
@@ -254,29 +276,27 @@ function update() {
     switch (currentMenuOption) {
         case 0:
             createTitleScreen();
-            if (!audioPlaying & options.music) {
+            if (!audioPlaying && options.music) {
                 menuAudio.currentTime = 0;
-                menuAudio.play();
+                safePlayAudio(menuAudio);
                 audioPlaying = true;
             }
             titleScreenControls();
             break;
         case 1:
             if (inGame) {
-                if (!levelTranslated) {
+                var maxLevelsMain = allStoryModeLevels.length;
+                if (!levelTranslated && currentLevel <= maxLevelsMain) {
                     translateLevelData(allStoryModeLevels[currentLevel - 1]);
                     levelTranslated = true;
-                }
-                if (!doneOnce) {
                     checkForMusicSwap();
-                    doneOnce = true;
                 }
                 drawLevel(level);
                 playerController();
                 if (!controlsMenuShown) {
                     drawControlsMenu();
                 }
-                if (currentLevel == 41) {
+                if (currentLevel > maxLevelsMain) {
                     inGame = false;
                     currentMenuOption = 9;
                     audioPlaying = false;
@@ -287,7 +307,7 @@ function update() {
             if (!audioPlaying && options.music) {
                 muteAllMusic();
                 editorAudio.currentTime = 0;
-                editorAudio.play();
+                safePlayAudio(editorAudio);
                 audioPlaying = true;
             }
             createEditorScreen();
@@ -297,7 +317,7 @@ function update() {
             createSettingsScreen();
             if (!audioPlaying && options.music) {
                 settingsAudio.currentTime = 0;
-                settingsAudio.play();
+                safePlayAudio(settingsAudio);
                 audioPlaying = true;
             }
             settingsMenuControls();
@@ -323,7 +343,7 @@ function update() {
         case 7:
             if (!sentInfoNotif) {
                 var levelCode = prompt("Enter the level data to load: ", "Level data");
-                if (levelCode != null) {
+                if (!!levelCode) {
                     resetPlayerPosition();
                     translateLevelData(levelCode);
                 }
@@ -364,20 +384,18 @@ function update() {
             break;
         case 20:
             if (inGame) {
-                if (!levelTranslated) {
+                var maxLevelsBonus = theFoundLevels.length;
+                if (!levelTranslated && currentLevel <= maxLevelsBonus) {
                     translateLevelData(theFoundLevels[currentLevel - 1]);
                     levelTranslated = true;
-                }
-                if (!doneOnce) {
                     checkForMusicSwap();
-                    doneOnce = true;
                 }
                 drawLevel(level);
                 playerController();
                 if (!controlsMenuShown) {
                     drawNewControls();
                 }
-                if (currentLevel == 41) {
+                if (currentLevel > maxLevelsBonus) {
                     inGame = false;
                     currentMenuOption = 9;
                     audioPlaying = false;
@@ -407,30 +425,17 @@ function drawFinalScreen() {
     ctx.font = "15px Helvetica";
 
     ctx.fillText("CubeDood had completed all of the levels,", 75, 175);
-    ctx.fillText("and had entered CubeTops castle,", 75, 200);
-    ctx.fillText("But oh! That CubeTop! He had left without a trace.", 75, 225);
+    ctx.fillText("and entered CubeTops castle,", 75, 200);
+    ctx.fillText("But oh! CubeTop left without a trace.", 75, 225);
     ctx.fillText("However, CubeTop had left a note.", 75, 250);
     ctx.fillText("The note had some text written on it. It said:", 75, 275);
-    ctx.fillText("CubeDood! You may have completed all my levels,", 75, 300);
-    ctx.fillText("and have beaten level 15,", 75, 325);
+    
+    ctx.fillText("CubeDood, you may have completed all my levels.", 75, 325);
     ctx.fillText("But when I return, you will not see it coming.", 75, 350);
     ctx.fillText("When I return, this whole world will come to fight you!", 75, 375);
     ctx.fillText("To be continued... in CubeDood vs The World!", 75, 400);
     ctx.fillText("Thank you for playing!", 75, 425);
     ctx.fillText("Press space to return to the main menu.", 75, 450);
-
-    /*
-    ctx.fillText("and entered a mysterious room, with a note.", 75, 200);
-    ctx.fillText("It said:", 75, 225);
-    ctx.fillText("Congratulations! You have completed the game!", 75, 250);
-    ctx.fillText("You have beaten the game, and you are now a true CubeDood.", 75, 275);
-    ctx.fillText("Thank you for playing!", 75, 300);
-    ctx.fillText("Press space to return to the main menu.", 75, 325);
-    ctx.fillText("But when flipped over, it said:", 75, 375);
-    ctx.fillText("'CubeDood, you may have beaten me this time,'", 75, 400);
-    ctx.fillText("'but I will be back, and this entire world will come with me.'", 75, 425);
-    ctx.fillText("To be continued... in CubeDood 2!", 75, 450);
-    */
 
     drawVersion();
     drawStudios();
@@ -507,7 +512,7 @@ function drawNewControls() {
     ctx.font = "15px Helvetica";
     ctx.fillStyle = "black";
     ctx.fillText("Welcome back to CubeDood!", 100, 340);
-    ctx.fillText("You know the deal, beat all 40 levels,", 100, 360);
+    ctx.fillText("You know the deal, beat all 13 levels,", 100, 360);
     ctx.fillText("To save the world from CubeTop.", 100, 380);
     ctx.fillText("Except... This time,", 100, 400);
     ctx.fillText("All the levels are harder and more difficult!", 100, 420);
@@ -643,7 +648,7 @@ function createCubeTop(cubetop) {
     ctx.fillStyle = "black";
     ctx.beginPath();
     ctx.rect(cubetop.x, cubetop.y, cubetop.w, cubetop.h);
-    ctx.stroke();
+    
     ctx.closePath();
     ctx.fillStyle = "white";
     ctx.beginPath();
@@ -651,42 +656,24 @@ function createCubeTop(cubetop) {
     ctx.fill();
     ctx.closePath();
 
-    switch (cubetop.direction) {
-        case "r":
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.arc(cubetop.x + 10, cubetop.y + 10, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.arc(cubetop.x + 30, cubetop.y + 10, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.closePath();
+    ctx.fillStyle = 'black';
+
+    switch (cubetop.direction) {   
+        case 'r':
+            ctx.fillRect(cubetop.x + 8, cubetop.y + 8, 8, 8);
+            ctx.fillRect(cubetop.x + 24, cubetop.y + 8, 8, 8);
             break;
-        case "l":
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.arc(cubetop.x + 3, cubetop.y + 10, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.arc(cubetop.x + 25, cubetop.y + 10, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.closePath();
+        case 'l':
+            ctx.fillRect(cubetop.x, cubetop.y + 8, 8, 8);
+            ctx.fillRect(cubetop.x + 16, cubetop.y + 8, 8, 8);
             break;
-        case "upr":
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.arc(cubetop.x + 10, cubetop.y + 3, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.arc(cubetop.x + 30, cubetop.y + 3, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.closePath();
+        case 'upr':
+            ctx.fillRect(cubetop.x + 8, cubetop.y, 8, 4);
+            ctx.fillRect(cubetop.x + 24, cubetop.y, 8, 4);
             break;
-        case "upl":
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.arc(cubetop.x + 3, cubetop.y + 3, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.arc(cubetop.x + 25, cubetop.y + 3, 3, 0, Math.PI, true);
-            ctx.fill();
-            ctx.closePath();
+        case 'upl':
+            ctx.fillRect(cubetop.x, cubetop.y, 8, 4);
+            ctx.fillRect(cubetop.x + 16, cubetop.y, 8, 4);
             break;
     }
 
@@ -999,12 +986,12 @@ function createCreditsText() {
     ctx.fillText("Created by " + game.author, 140, 170);
     ctx.fillText(game.author + ":", 140, 200);
     ctx.fillText("Jack Spencer (Colack)", 140, 220);
-    ctx.fillText("Music: MotionArray", 140, 250);
+    ctx.fillText("Hotfixes by LGM Productions", 140, 240);
+    ctx.fillText("Music: MotionArray", 140, 260);
     ctx.fillText("Special thanks to Jared,", 140, 280);
     ctx.fillText("All of the speedrunners,", 140, 300);
     ctx.fillText("All custom level creators,", 140, 320);
     ctx.fillText("and the people who play my game!", 140, 340);
-    ctx.fillText("Press D on the main menu to join our discord!", 85, 390);
 }
 
 function drawBlock(x, y, w, h, color) {
@@ -1133,7 +1120,8 @@ function translateLevelData(levelData) {
         levelData = allStoryModeLevels[levelData - 1];
     }
 
-    levelData = levelData.replace(/,/g, " ");
+    // Replace double-commas or odd spacing
+    levelData = levelData.replace(/,,/g, ",0,").replace(/,/g, " ");
 
     currentLevelName = levelData.substring(0, levelData.indexOf(" "));
     currentLevelAuthor = levelData.substring(levelData.indexOf(" ") + 1, levelData.indexOf(" ", levelData.indexOf(" ") + 1));
@@ -1142,8 +1130,11 @@ function translateLevelData(levelData) {
 
     levelData = levelData.replace(/"/g, "");
 
-    var levelDataArray = levelData.split(" ");
+    var levelDataArray = levelData.split(" ").filter(function(item) { return item !== ""; });
     var levelDataArrayIndex = 0;
+
+    levelStartPost.x = 0;
+    levelStartPost.y = 0;
 
     for (var y = 0; y < level.length; y++) {
         for (var x = 0; x < level[y].length; x++) {
@@ -1172,8 +1163,14 @@ function drawVersion() {
 
 function drawStudios() {
     ctx.fillStyle = "black";
-    ctx.font = "15px Helvetica";
-    ctx.fillText(game.author, 420, 470);
+
+    ctx.font = "14px Helvetica";
+    ctx.textAlign = "right";
+    ctx.fillText(game.author, canvas.width - 10, 454);
+    ctx.fillText(game.coauthor, canvas.width - 10, 470);
+
+    ctx.textAlign = "left";
+    
 }
 
 function muteAllMusic() {
@@ -1191,6 +1188,8 @@ function muteAllMusic() {
     quadAudio.currentTime = 0;
     squaredImpared.pause();
     squaredImpared.currentTime = 0;
+    swingAudio.pause();
+    swingAudio.currentTime = 0;
 }
 
 function unmuteAllMusic() {
@@ -1198,13 +1197,17 @@ function unmuteAllMusic() {
 
     switch (currentMenuOption) {
         case 0:
-            menuAudio.play();
+            safePlayAudio(menuAudio);
             break;
         case 2:
-            editorAudio.play();
+            safePlayAudio(editorAudio);
             break;
         case 3:
-            settingsAudio.play();
+            safePlayAudio(settingsAudio);
+            break;
+        case 1:
+        case 20:
+            checkForMusicSwap();
             break;
     }
 }
@@ -1246,6 +1249,8 @@ function titleScreenControls() {
                     playAsCubeTop = true;
                 }
                 currentMenuOption = 1;
+                currentLevel = 1;
+                levelTranslated = false;
                 inGame = true;
                 currentMainMenuOption = 0;
                 break;
@@ -1266,6 +1271,8 @@ function titleScreenControls() {
                     playAsCubeTop = true;
                 }
                 currentMenuOption = 20;
+                currentLevel = 1;
+                levelTranslated = false;
                 inGame = true;
                 currentMainMenuOption = 0;
                 break;
@@ -1277,13 +1284,12 @@ function titleScreenControls() {
         }, 250);
         if (currentMenuOption != 4) {
             audioPlaying = false;
-            menuAudio.pause();
-            menuAudio.currentTime = 0;
-            squaredImpared.pause();
-            squaredImpared.currentTime = 0;
+            muteAllMusic();
         }
     }
-    if (keys[68]) {
+    
+    // The discord link is broken. Until this gets fixed, this won't do anything.
+    /*if (keys[68]) {
         if (!cannotPress) {
             window.open("https://discord.com/invite/37BGK56jeU", "_blank");
             cannotPress = true;
@@ -1292,7 +1298,7 @@ function titleScreenControls() {
                 cannotPress = false;
             }, 1000);
         }
-    }
+    }*/
 }
 
 function checkForMusicSwap() {
@@ -1300,28 +1306,23 @@ function checkForMusicSwap() {
         if (currentLevel == 1) {
             muteAllMusic();
             boltTheme.currentTime = 0;
-            boltTheme.loop = true;
-            boltTheme.play();
+            safePlayAudio(boltTheme);
         } else if (currentLevel == 11) {
             muteAllMusic();
             cubetopTheme.currentTime = 0;
-            cubetopTheme.loop = true;
-            cubetopTheme.play();
+            safePlayAudio(cubetopTheme);
         } else if (currentLevel == 21) {
             muteAllMusic();
             settingsAudio.currentTime = 0;
-            settingsAudio.loop = true;
-            settingsAudio.play();
+            safePlayAudio(settingsAudio);
         } else if (currentLevel == 31) {
             muteAllMusic();
             swingAudio.currentTime = 0;
-            swingAudio.loop = true;
-            swingAudio.play();
+            safePlayAudio(swingAudio);
         } else if (currentLevel == 41) {
             muteAllMusic();
             quadAudio.currentTime = 0;
-            quadAudio.loop = true;
-            quadAudio.play();
+            safePlayAudio(quadAudio);
         }
     }
 }
@@ -1354,29 +1355,20 @@ function settingsMenuControls() {
     if (keys[13] && !cannotPress) {
         switch (currentSettingsMenuOption) {
             case 0:
-                if (options.sfx) {
-                    options.sfx = false;
-                } else {
-                    options.sfx = true;
-                }
+                options.sfx = !options.sfx;
                 cannotPress = true;
                 break;
             case 1:
-                if (options.music) {
-                    options.music = false;
+                options.music = !options.music;
+                if (!options.music) {
                     muteAllMusic();
                 } else {
-                    options.music = true;
                     unmuteAllMusic();
                 }
                 cannotPress = true;
                 break;
             case 2:
-                if (options.fullscreen) {
-                    options.fullscreen = false;
-                } else {
-                    options.fullscreen = true;
-                }
+                options.fullscreen = !options.fullscreen;
                 cannotPress = true;
                 break;
             case 3:
@@ -1433,14 +1425,14 @@ function initiateJump() {
     controlsMenuShown = true;
     player.jumping = true;
     player.grounded = false;
-    player.velY = -physics.jump * 2;
+    player.velY = physics.jump * -2;
     player.direction = player.direction === "r" ? "upr" : "upl";
 }
 
 function playJumpAudioIfAllowed() {
     if (!soundEffectPlaying && options.sfx) {
         jumpAudio.currentTime = 0;
-        jumpAudio.play();
+        safePlayAudio(jumpAudio);
         soundEffectPlaying = true;
         setTimeout(() => soundEffectPlaying = false, 250);
     }
@@ -1591,11 +1583,7 @@ function editorControls() {
             cannotPress = false;
             keys[32] = false;
         }, 100);
-        if (menuShowing) {
-            menuShowing = false;
-        } else {
-            menuShowing = true;
-        }
+        menuShowing = !menuShowing;
     }
     if (keys[69] && !cannotPress) {
         editorLevel[currentGridPosition.y][currentGridPosition.x] = editor.currentHeldBlock;
@@ -1677,11 +1665,7 @@ function editorControls() {
             cannotPress = false;
             keys[27] = false;
         }, 100);
-        if (menuShowing) {
-            menuShowing = false;
-        } else {
-            menuShowing = true;
-        }
+        menuShowing = !menuShowing;
     }
     if (keys[13] && !cannotPress) {
         if (!sentEditorNotif) {
@@ -1734,6 +1718,7 @@ function editorMenuControls() {
                 cannotPress = true;
                 break;
             case 2:
+                alert("Level submission is only for the orginal game. Please note that this link is not ran by LGM Productions.")
                 window.open("https://forms.gle/5pvuPEWe2GdpaCsJA", "_blank");
                 cannotPress = true;
                 break;
@@ -1822,18 +1807,14 @@ function saveEditorLevel(level) {
 }
 
 function translateLevelDataToEditor(levelData) {
-    // If the first character is "!", retrieve corresponding story mode level
     if (levelData.startsWith("!")) {
         levelData = allStoryModeLevels[parseInt(levelData.substring(1), 10) - 1];
     }
 
-    // Replace commas with spaces and remove quotes
-    levelData = levelData.replace(/,/g, " ").replace(/"/g, "");
+    levelData = levelData.replace(/,,/g, ",0,").replace(/,/g, " ").replace(/"/g, "");
 
-    // Split the level data by spaces for easier parsing
-    const levelDataArray = levelData.split(" ");
+    const levelDataArray = levelData.split(" ").filter(function(item) { return item !== ""; });
 
-    // Parse level name and author from the first two elements
     currentLevelName = levelDataArray.shift();
     currentLevelAuthor = levelDataArray.shift();
 
@@ -1862,6 +1843,7 @@ function collisionCheck(level) {
                 w: 32,
                 h: 32
             }
+            
             var collision = player.x < x + tile.w && player.x + player.w > x && player.y < y + tile.h && player.y + player.h > y;
             if (!collision) continue;
             switch (level[i][j]) {
@@ -1887,16 +1869,18 @@ function collisionCheck(level) {
                             break;
                         case "left":
                             player.x = tile.x - player.w;
+                            player.velX = 0;
                             break;
                         case "right":
                             player.x = tile.x + tile.w;
+                            player.velX = 0;
                             break;
                     }
                     break;
                 case 2:
                     if (options.sfx) {
                         winAudio.currentTime = 0;
-                        winAudio.play();
+                        safePlayAudio(winAudio);
                     }
                     if (currentMenuOption == 1 || currentMenuOption == 20) {
                         currentLevel++;
