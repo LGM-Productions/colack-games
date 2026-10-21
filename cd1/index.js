@@ -45,6 +45,8 @@ var assets = {
     sfx: {
         jump: "./assets/sfx/jump.mp3",
         win: "./assets/sfx/win.mp3",
+        hover: "./assets/sfx/tick.mp3",
+        select: "./assets/sfx/select.mp3",
     },
     ost: {
         newMenu: "./assets/ost/The Memory Snatcher.mp3",
